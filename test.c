@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 int main(void){
-    printf("Hello worl\n");
+    printf("Hello world and this is the modification made on my laptop\n");
 
     return EXIT_SUCCESS;
 }
