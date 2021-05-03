@@ -1,2 +1,11 @@
 exclusiement à partir de fonctions qui sont def dans le modèle.c
 on ne dois pas accéder directement aux structures données concrèretes définis pas donnees.h
+
+une archive avec tous les .c, .h et le make file
+archive au format tar.gz
+avoir un rapport au format pdf dans l'archive
+mettre des tructures de compilation initiales dans l'archive de rendu
+
+
+Dans le modèle aucune référence à l'interface graphique (widget/libsx)
+Programation du collback ne doit faire aucune référence directe au modèle/données
