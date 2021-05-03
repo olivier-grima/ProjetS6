@@ -1,0 +1,2 @@
+exclusiement à partir de fonctions qui sont def dans le modèle.c
+on ne dois pas accéder directement aux structures données concrèretes définis pas donnees.h
