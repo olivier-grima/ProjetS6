@@ -1,3 +1,5 @@
+/*  Authors Yassine El Aissaoui & Olivier Grima
+ */
 #pragma once
 
 #include <libsx.h>
@@ -7,15 +9,6 @@
 
 typedef enum {dead,alive} etat;
 
-etat grille[x][y]={{0,0,0,1,0,0,0,1,0},
-				   {0,0,0,1,0,0,0,1,0},
-				   {0,1,0,1,0,0,0,1,0},
-				   {0,0,0,1,0,1,0,1,0},
-				   {0,1,0,1,0,1,0,1,0},
-				   {0,0,0,1,0,0,1,1,0},
-				   {0,1,0,1,1,0,1,1,0},
-				   {0,0,0,1,0,0,1,1,0},
-				   {0,1,0,1,0,1,0,1,0}};
 int  voisin[x][y];
 
 extern int nombresdesvoi(const etat *, int, int);

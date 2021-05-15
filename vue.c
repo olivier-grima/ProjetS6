@@ -10,6 +10,16 @@
 #include "modele.h"
 #include "callbacks.h"
 
+etat grille[x][y]={{0,0,0,1,0,0,0,1,0},
+				   {0,0,0,1,0,0,0,1,0},
+				   {0,1,0,1,0,0,0,1,0},
+				   {0,0,0,1,0,1,0,1,0},
+				   {0,1,0,1,0,1,0,1,0},
+				   {0,0,0,1,0,0,1,1,0},
+				   {0,1,0,1,1,0,1,1,0},
+				   {0,0,0,1,0,0,1,1,0},
+				   {0,1,0,1,0,1,0,1,0}};
+
 /* Rôle : affichage de la nouvelle fenetre de l'interface graphique quand t-on choisi le fonctionnement normal 
  *        de jeu de la vie 
  */
