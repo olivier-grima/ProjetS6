@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "modele.h": "c",
+        "libsx.h": "c"
+    }
+}
