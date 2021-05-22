@@ -22,46 +22,44 @@ void quit(Widget w,void *d) {
 /*
  *  Rôle : update l'affichage après le clic sur le bouton play sur la fenêtre de jeu standard
  */
-void playnormal(Widget w,void *d){	
-ClearDrawArea();
-etat *data= (etat *)d;
-int i,j;
-for(i=0; i<x; i++){
-  for(j=0; j<y;j++){
- 	if((*(data+i*x+j))==dead){
- 	DrawBox(j*20,i*20,20,20);
-    	
-    	}
- 	else{
- 	DrawFilledBox(j*20,i*20,20,20);
-    	 
-    	  }}}
-	
-Voisins(d,&voisin[0][0]);
-Miseajournormal(d,&voisin[0][0]);	    
+void playNormal(Widget w,void *d){	
+	ClearDrawArea();
+	etat *data= (etat *)d;
+	int i,j;
+	for(i=0; i<x; i++){
+		for(j=0; j<y;j++){
+			if((*(data+i*x+j))==dead){
+				DrawBox(j*20,i*20,20,20);		//affiche une case vide si la cellule est morte
+			}
+			else{
+				DrawFilledBox(j*20,i*20,20,20);	//affiche une case pleine si la cellule est vivante
+			}
+		}
+	}
+	Voisins(d,&voisin[0][0]);
+	updateNormal(d,&voisin[0][0]);
 }
 
 
 /*
  *  Rôle : update l'affichage après le clic sur le bouton play sur la fenêtre du variant day & night
  */
-void playvariant(Widget w,void *d){	
-ClearDrawArea();
-etat *data= (etat *)d;
-int i,j;
-for(i=0; i<x; i++){
-  for(j=0; j<y;j++){
- 	if((*(data+i*x+j))==dead){
- 	DrawBox(j*20,i*20,20,20);
-    	
-    	}
- 	else{
- 	DrawFilledBox(j*20,i*20,20,20);
-    	 
-    	  }}}
-	
-Voisins(d,&voisin[0][0]);
-Miseajourday_night(d,&voisin[0][0]);	    
+void playVariant(Widget w,void *d){	
+	ClearDrawArea();
+	etat *data= (etat *)d;
+	int i,j;
+	for(i=0; i<x; i++){
+		for(j=0; j<y;j++){
+			if((*(data+i*x+j))==dead){
+				DrawBox(j*20,i*20,20,20); 		//affiche une case vide si la cellule est morte
+			}
+			else{
+				DrawFilledBox(j*20,i*20,20,20); //affiche une case pleine si la cellule est vivante
+			}
+		}
+	}
+	Voisins(d,&voisin[0][0]);
+	updateDayNight(d,&voisin[0][0]);
 }
 
 /*

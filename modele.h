@@ -11,7 +11,7 @@ typedef enum {dead,alive} etat;
 
 int  voisin[x][y];
 
-extern int nombresdesvoi(const etat *, int, int);
+extern int nbDeVoisins(const etat *, int, int);
 extern void Voisins(const etat *, int *);
-extern void Miseajournormal(etat *, int *);
-extern void Miseajourday_night(etat *, int *);
+extern void updateNormal(etat *, int *);
+extern void updateDayNight(etat *, int *);
