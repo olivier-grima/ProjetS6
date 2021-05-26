@@ -9,9 +9,8 @@
 #include <libsx.h>
 #include "modele.h"
 #include "callbacks.h"
-#include "vue.h"
 
-etat grille[x][y]=		  {{0,0,0,1,0,0,0,1,0,1,0,1,0,0,1,0},
+etat grille[x][y]= {{0,0,0,1,0,0,0,1,0,1,0,1,0,0,1,0},
 				   {0,0,0,1,0,0,0,1,0,1,0,1,0,1,0,1},
 				   {0,1,0,1,0,0,0,1,0,1,1,0,1,1,0,1},
 				   {0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1},
@@ -29,11 +28,11 @@ etat grille[x][y]=		  {{0,0,0,1,0,0,0,1,0,1,0,1,0,0,1,0},
 				   {0,1,0,1,0,1,0,1,0,0,0,0,0,1,1,1}
 				   };
 
+
 /* Rôle : affichage de la nouvelle fenetre de l'interface graphique quand t-on choisi le fonctionnement normal 
  *        de jeu de la vie 
  */
 void createNormalGrid(Widget w,void *d){
-	nbriteration=0;
   	MakeWindow("Jeu Standard", NULL, 1);
   	Widget Draw_grille=MakeDrawArea(20*x,20*y, color, d);
  	Widget quitter=MakeButton("quitter",quit,NULL);
@@ -42,18 +41,12 @@ void createNormalGrid(Widget w,void *d){
 	Widget stable=MakeButton("Stable",structStable,&grille[0][0]);
 	Widget vaisseau=MakeButton("Vaisseau",structVaisseau,&grille[0][0]);
 	Widget mathusalhem=MakeButton("Mathusalhem",structMathusalhem,&grille[0][0]);
-	Widget aleatoire=MakeButton("population aleatoire",randomStruct,&grille[0][0]);
-	Widget starttoggle=MakeToggle("Enchainer",FALSE,NULL,CBtogglenormal,&grille[0][0]);
-	iteration=MakeLabel("0      ");
  	SetWidgetPos(quitter,PLACE_UNDER,Draw_grille,NO_CARE,NULL);
 	SetWidgetPos(start,PLACE_RIGHT,quitter,PLACE_UNDER,Draw_grille);
-	SetWidgetPos(starttoggle,PLACE_RIGHT,start,PLACE_UNDER,Draw_grille);
-	SetWidgetPos(aleatoire,PLACE_RIGHT,starttoggle,PLACE_UNDER,Draw_grille);
-	SetWidgetPos(oscillateur,PLACE_RIGHT,aleatoire,PLACE_UNDER,Draw_grille);
+	SetWidgetPos(oscillateur,PLACE_RIGHT,start,PLACE_UNDER,Draw_grille);
 	SetWidgetPos(stable,PLACE_RIGHT,oscillateur,PLACE_UNDER,Draw_grille);
 	SetWidgetPos(vaisseau,PLACE_RIGHT,stable,PLACE_UNDER,Draw_grille);
 	SetWidgetPos(mathusalhem,PLACE_UNDER,quitter,NO_CARE,NULL);
-	SetWidgetPos(iteration,PLACE_UNDER,mathusalhem,NO_CARE,NULL);
 
 	GetStandardColors();
 	ShowDisplay();
@@ -63,7 +56,6 @@ void createNormalGrid(Widget w,void *d){
  * Rôle : affiche la nouvelle fenetre de l'interface graphique quand on selectionne la variant day and night
  */
 void createVariantGrid(Widget w,void *d){
-	nbriteration=0;
   	MakeWindow("Day & Night", NULL, 1);
   	Widget Draw_grille=MakeDrawArea(20*x,20*y, color, d);
  	Widget quitter=MakeButton("quitter",quit,NULL);
@@ -72,20 +64,14 @@ void createVariantGrid(Widget w,void *d){
 	Widget stable=MakeButton("Stable",structStable,&grille[0][0]);
 	Widget vaisseau=MakeButton("Vaisseau",structVaisseau,&grille[0][0]);
 	Widget mathusalhem=MakeButton("Mathusalhem",structMathusalhem,&grille[0][0]);
-	Widget aleatoire=MakeButton("population aleatoire",randomStruct,&grille[0][0]);
-	Widget starttoggle=MakeToggle("Auto",FALSE,NULL,CBtogglevariant,&grille[0][0]);
-	iteration=MakeLabel("0     ");
  	SetWidgetPos(quitter,PLACE_UNDER,Draw_grille,NO_CARE,NULL);
 	SetWidgetPos(start,PLACE_RIGHT,quitter,PLACE_UNDER,Draw_grille);
-	SetWidgetPos(starttoggle,PLACE_RIGHT,start,PLACE_UNDER,Draw_grille);
-	SetWidgetPos(aleatoire,PLACE_RIGHT,starttoggle,PLACE_UNDER,Draw_grille);
-	SetWidgetPos(oscillateur,PLACE_RIGHT,aleatoire,PLACE_UNDER,Draw_grille);
+	SetWidgetPos(oscillateur,PLACE_RIGHT,start,PLACE_UNDER,Draw_grille);
 	SetWidgetPos(stable,PLACE_RIGHT,oscillateur,PLACE_UNDER,Draw_grille);
 	SetWidgetPos(vaisseau,PLACE_RIGHT,stable,PLACE_UNDER,Draw_grille);
 	SetWidgetPos(mathusalhem,PLACE_UNDER,quitter,NO_CARE,NULL);
-	SetWidgetPos(iteration,PLACE_UNDER,mathusalhem,NO_CARE,NULL);
 	GetStandardColors();
-	ShowDisplay();					
+	ShowDisplay();
 }
 
 
@@ -105,35 +91,35 @@ void init_display(int argc, char *argv[], void *d){
  /************		MISE EN PAGE		***************/
 
     // Les Labels et consigne       
-	Widget titre = MakeLabel("\t Jeu de la vie\n\n ");
-	Widget consigne = MakeLabel("\t Le jeu de la vie est un jeu de simulation au sens mathematique plutot que ludique.\nBien que n'etant pas decrit par la theorie des jeux, certains le decrivent comme un\n\"jeu a zero joueur\"\n\nDeux styles de jeu s'offrent à vous :\n\n        Premier style: le jeu standard de la vie\n        Deuxieme style: la variant Day & Night\n\n\nVous pouvez choisir parmis différents presets le positionnement initial des cellules\nvivantes sur la grille.");
+		Widget titre = MakeLabel("\t Jeu de la vie\n\n ");
+		Widget consigne = MakeLabel("\t Le jeu de la vie est un jeu de simulation au sens mathematique plutot que ludique.\nBien que n'etant pas decrit par la theorie des jeux, certains le decrivent comme un\n\"jeu a zero joueur\"\n\nDeux styles de jeu s'offrent à vous :\n\n        Premier style: le jeu standard de la vie\n        Deuxieme style: la variant Day & Night\n\n\nVous pouvez choisir parmis différents presets le positionnement initial des cellules\nvivantes sur la grille.");
 
-	SetWidgetPos(consigne, PLACE_UNDER, titre, NO_CARE, NULL);
-	SetWidgetFont(titre, policeTitre);
-	SetWidgetFont(consigne, policeText);
+		SetWidgetPos(consigne, PLACE_UNDER, titre, NO_CARE, NULL);
+		SetWidgetFont(titre, policeTitre);
+		SetWidgetFont(consigne, policeText);
 
 
     // Les 2 buttons de syle
 		        
-	Widget textJouer = MakeLabel("\nPour jouer,veuillez choisir un style de jeu ainsi qu'un preset\n\n");
+		Widget textJouer = MakeLabel("\nPour jouer,veuillez choisir un style de jeu ainsi qu'un preset\n\n");
 
-	Widget jeunormal = MakeButton("\n  Jeu standard \n ", createNormalGrid, NULL);
-	SetBgColor(jeunormal, GetRGBColor(0, 255, 0));
-	Widget jeuvariant = MakeButton("\n  Day & Night  \n ", createVariantGrid, NULL);
-	SetBgColor(jeuvariant, GetRGBColor(244, 102, 27));
+		Widget jeunormal = MakeButton("\n  Jeu standard \n ", createNormalGrid, NULL);
+		SetBgColor(jeunormal, GetRGBColor(0, 255, 0));
+		Widget jeuvariant = MakeButton("\n  Day & Night  \n ", createVariantGrid, NULL);
+		SetBgColor(jeuvariant, GetRGBColor(244, 102, 27));
 
 
-	SetWidgetPos(textJouer, PLACE_UNDER, consigne, NO_CARE, NULL);
-	SetWidgetPos(jeunormal, PLACE_UNDER, textJouer, NO_CARE, NULL);
-	SetWidgetPos(jeuvariant, PLACE_RIGHT, jeunormal, PLACE_UNDER, textJouer);
-	SetWidgetFont(textJouer, policeText);
+		SetWidgetPos(textJouer, PLACE_UNDER, consigne, NO_CARE, NULL);
+		SetWidgetPos(jeunormal, PLACE_UNDER, textJouer, NO_CARE, NULL);
+		SetWidgetPos(jeuvariant, PLACE_RIGHT, jeunormal, PLACE_UNDER, textJouer);
+		SetWidgetFont(textJouer, policeText);
 
     // the quit button
-	Widget bQuitter = MakeButton(  "\n      QUIT       \n ", quit, NULL);
+		Widget bQuitter = MakeButton(  "\n      QUIT       \n ", quit, NULL);
 
-	SetWidgetPos(bQuitter, PLACE_UNDER, jeunormal, NO_CARE, NULL);
+		SetWidgetPos(bQuitter, PLACE_UNDER, jeunormal, NO_CARE, NULL);
 
 	
 // affichage du fenetre
-	ShowDisplay();
+ShowDisplay();
 }

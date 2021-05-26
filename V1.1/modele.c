@@ -6,7 +6,6 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <time.h>
 #include "modele.h"
 
 
@@ -74,18 +73,9 @@ void updateDayNight(etat *grille, int *voisin){
 }
 
 /*
- Role: remplie la grille avec des population aleatoire
-*/
-void randomPopulation(etat *population){
-  srand(time(NULL));
-  for(int i=0;i<x;i++){
-    for(int j=0;j<y;j++){
-      *(population+i*x+j)=rand()&1; //prend un bit d'un nombre random qui peut etre 1 ou 0 ==> remplissage aleatoire
-      }}}
-  
-/*
  Role: implimentation de la grille à partir d'un fichier deja lu par la fonction "fopen"
 */
+
 void fichiertogrille(etat *population,FILE *in){
   int i=0;
   char Tab[x][y]={};
@@ -96,9 +86,8 @@ void fichiertogrille(etat *population,FILE *in){
   
   for(int i=0;i<x;i++){
     for(int j=0;j<y;j++){
-      if(Tab[i][j]=='0')
-        *(population+i*x+j)=0;
-      if(Tab[i][j]=='1')
-        *(population+i*x+j)=1;
-        }}
+      if(Tab[i][j]=='0') *(population+i*x+j)=0;
+      if(Tab[i][j]=='1') *(population+i*x+j)=1;
+    }
+  }
 }

@@ -15,5 +15,4 @@ extern int nbDeVoisins(const etat *, int, int);
 extern void Voisins(const etat *, int *);
 extern void updateNormal(etat *, int *);
 extern void updateDayNight(etat *, int *);
-extern void randomPopulation(etat *);
 extern void fichiertogrille(etat *,FILE *);

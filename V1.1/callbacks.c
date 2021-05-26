@@ -10,10 +10,6 @@
 #include "vue.h"
 #include "callbacks.h"
 
-
-char nbr[10];//chaine de caracteres qui contient le nombre d'iteration
-int toggleon_off=0;// variable qui correspond si le toggle est activé ou pas
-
 /* 
  * Rôle : termine l'éxécution du jeu si le jeu est en cours 
  * Quitte le jeu si l'utilisateur est sur la page d'accueil
@@ -71,12 +67,7 @@ void structMathusalhem(Widget w,void *d){
   fichiertogrille(d,in);
   fclose(in);
 }
-/*
- Role: fonction qui réinitialise la grille aléatoirement
- */ 
-void randomStruct(Widget w,void *d){
-  randomPopulation(d);
-}
+   
         
         
 
@@ -96,49 +87,10 @@ void newDisplay(void *d){
 	}
 }
 
-void autoModeNormal(void *d, XtIntervalId *id){
-  //si le nombre d'appui est paire alors on a desactiver le toggle==> on fait pas la mise à jour
-  //sinon quand le nombre d'appui est impaire alors on vient de lancer l'enchainement=> on fait la mise à jour normal
-  if(toggleon_off%2!=0){
-    nbriteration++;
-    sprintf(nbr,"%d",nbriteration);
-    SetLabel(iteration,nbr);
-    newDisplay(d);
-    Voisins(d,&voisin[0][0]);
-    updateNormal(d,&voisin[0][0]);
-    AddTimeOut(1000, (GeneralCB)autoModeNormal, d);
-  }
-}
-void CBtogglenormal(Widget w,void *d){
-  toggleon_off++;
-  AddTimeOut(1000, (GeneralCB)autoModeNormal, d);
-}
-
-void autoModeVariant(void *d, XtIntervalId *id){
-  //si le nombre d'appui est paire alors on a desactiver le toggle==> on fait pas la mise à jour
-  //sinon quand le nombre d'appui est impaire alors on vient de lancer l'enchainement=> on fait la mise à jour day and night
-  if(toggleon_off%2!=0){
-    nbriteration++;
-    sprintf(nbr,"%d",nbriteration);
-    SetLabel(iteration,nbr);
-    newDisplay(d);
-    Voisins(d,&voisin[0][0]);
-    updateDayNight(d,&voisin[0][0]);
-    AddTimeOut(1000, (GeneralCB)autoModeVariant, d);
-  }
-}
-void CBtogglevariant(Widget w,void *d){
-  toggleon_off++;
-  AddTimeOut(1000, (GeneralCB)autoModeVariant, d);
-}
-
 /*
- *  Rôle : update l'affichage après le clic sur le bouton play sur la fenêtre de jeu standard ou lors de l'éxécution automatique avec le bouton Auto
+ *  Rôle : update l'affichage après le clic sur le bouton play sur la fenêtre de jeu standard
  */
-void playNormal(Widget w,void *d){
-	nbriteration++;
-	sprintf(nbr,"%d",nbriteration);
-	SetLabel(iteration,nbr);
+void playNormal(Widget w,void *d){	
 	newDisplay(d);
 	Voisins(d,&voisin[0][0]);
 	updateNormal(d,&voisin[0][0]);
@@ -146,12 +98,9 @@ void playNormal(Widget w,void *d){
 
 
 /*
- *  Rôle : update l'affichage après le clic sur le bouton play sur la fenêtre du variant day & night ou lors de l'éxécution automatique avec le bouton Auto
+ *  Rôle : update l'affichage après le clic sur le bouton play sur la fenêtre du variant day & night
  */
-void playVariant(Widget w,void *d){
-	nbriteration++;
-	sprintf(nbr,"%d",nbriteration);
-	SetLabel(iteration,nbr);	
+void playVariant(Widget w,void *d){	
 	newDisplay(d);
 	Voisins(d,&voisin[0][0]);
 	updateDayNight(d,&voisin[0][0]);
