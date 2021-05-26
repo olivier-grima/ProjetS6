@@ -5,6 +5,7 @@
 
 int nbriteration;// le nombre d'iteration effectué
 extern void quit(Widget, void *);
+extern void structList(Widget ,char *, int , void *);
 extern void structOscillateur(Widget,void *);
 extern void structStable(Widget,void *);
 extern void structVaisseau(Widget,void *);

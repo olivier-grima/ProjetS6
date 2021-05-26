@@ -24,7 +24,22 @@ void quit(Widget w,void *d) {
     CloseWindow();
 }
 
- 
+void structList(Widget w,char *str, int index, void *d){
+  switch (index){
+    /*case 0 : randomStruct(w,d); break;
+    case 1 : structOscillateur(w,d); break;
+    case 2 : structStable(w,d); break;
+    case 3 : structVaisseau(w,d); break;
+    case 4 : structMathusalhem(w,d); break;*/
+    case 0 : printf("rand"); break;
+    case 1 : printf("osci"); break;
+    case 2 : printf("stab"); break;
+    case 3 : printf("vaiu"); break;
+    case 4 : printf("math"); break;
+    default: break;
+  }
+}
+
 /*
  Role: fonction qui réinitialise la grille à partir d'une structure lu sur le fichier 'oscillateur'
  */

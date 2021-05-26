@@ -11,7 +11,7 @@
 #include "callbacks.h"
 #include "vue.h"
 
-etat grille[x][y]=		  {{0,0,0,1,0,0,0,1,0,1,0,1,0,0,1,0},
+etat grille[x][y]={{0,0,0,1,0,0,0,1,0,1,0,1,0,0,1,0},
 				   {0,0,0,1,0,0,0,1,0,1,0,1,0,1,0,1},
 				   {0,1,0,1,0,0,0,1,0,1,1,0,1,1,0,1},
 				   {0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1},
@@ -29,6 +29,8 @@ etat grille[x][y]=		  {{0,0,0,1,0,0,0,1,0,1,0,1,0,0,1,0},
 				   {0,1,0,1,0,1,0,1,0,0,0,0,0,1,1,1}
 				   };
 
+char *string_list[] = {"Random","Oscillateur","Stable","Vaisseau","Mathusalhem","NULL"};
+
 /* Rôle : affichage de la nouvelle fenetre de l'interface graphique quand t-on choisi le fonctionnement normal 
  *        de jeu de la vie 
  */
@@ -38,22 +40,25 @@ void createNormalGrid(Widget w,void *d){
   	Widget Draw_grille=MakeDrawArea(20*x,20*y, color, d);
  	Widget quitter=MakeButton("quitter",quit,NULL);
 	Widget start=MakeButton("play",playNormal,&grille[0][0]);
-	Widget oscillateur=MakeButton("Oscillateur",structOscillateur,&grille[0][0]);
+	Widget List = MakeScrollList(string_list,100,100,structList,d); 
+
+	/*Widget oscillateur=MakeButton("Oscillateur",structOscillateur,&grille[0][0]);
 	Widget stable=MakeButton("Stable",structStable,&grille[0][0]);
 	Widget vaisseau=MakeButton("Vaisseau",structVaisseau,&grille[0][0]);
 	Widget mathusalhem=MakeButton("Mathusalhem",structMathusalhem,&grille[0][0]);
-	Widget aleatoire=MakeButton("population aleatoire",randomStruct,&grille[0][0]);
+	Widget aleatoire=MakeButton("population aleatoire",randomStruct,&grille[0][0]);*/
 	Widget starttoggle=MakeToggle("Enchainer",FALSE,NULL,CBtogglenormal,&grille[0][0]);
 	iteration=MakeLabel("0      ");
  	SetWidgetPos(quitter,PLACE_UNDER,Draw_grille,NO_CARE,NULL);
+	SetWidgetPos(List,PLACE_RIGHT,Draw_grille,NO_CARE,NULL);
 	SetWidgetPos(start,PLACE_RIGHT,quitter,PLACE_UNDER,Draw_grille);
 	SetWidgetPos(starttoggle,PLACE_RIGHT,start,PLACE_UNDER,Draw_grille);
-	SetWidgetPos(aleatoire,PLACE_RIGHT,starttoggle,PLACE_UNDER,Draw_grille);
+	/*SetWidgetPos(aleatoire,PLACE_RIGHT,starttoggle,PLACE_UNDER,Draw_grille);
 	SetWidgetPos(oscillateur,PLACE_RIGHT,aleatoire,PLACE_UNDER,Draw_grille);
 	SetWidgetPos(stable,PLACE_RIGHT,oscillateur,PLACE_UNDER,Draw_grille);
 	SetWidgetPos(vaisseau,PLACE_RIGHT,stable,PLACE_UNDER,Draw_grille);
 	SetWidgetPos(mathusalhem,PLACE_UNDER,quitter,NO_CARE,NULL);
-	SetWidgetPos(iteration,PLACE_UNDER,mathusalhem,NO_CARE,NULL);
+	SetWidgetPos(iteration,PLACE_UNDER,mathusalhem,NO_CARE,NULL);*/
 
 	GetStandardColors();
 	ShowDisplay();
