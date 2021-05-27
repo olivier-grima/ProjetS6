@@ -11,7 +11,7 @@
 #include "callbacks.h"
 #include "vue.h"
 
-etat grille[x][y]=		  {{0,0,0,1,0,0,0,1,0,1,0,1,0,0,1,0},
+etat grille[x][y]={{0,0,0,1,0,0,0,1,0,1,0,1,0,0,1,0},
 				   {0,0,0,1,0,0,0,1,0,1,0,1,0,1,0,1},
 				   {0,1,0,1,0,0,0,1,0,1,1,0,1,1,0,1},
 				   {0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1},
@@ -33,9 +33,11 @@ etat grille[x][y]=		  {{0,0,0,1,0,0,0,1,0,1,0,1,0,0,1,0},
  *        de jeu de la vie 
  */
 void createNormalGrid(Widget w,void *d){
-	nbriteration=0;
+	nbriteration=-1;
   	MakeWindow("Jeu Standard", NULL, 1);
   	Widget Draw_grille=MakeDrawArea(20*x,20*y, color, d);
+	Widget scrollBar = MakeHorizScrollbar(150, scrollCallback, d);
+
  	Widget quitter=MakeButton("Quitter",quit,NULL);
 	Widget start=MakeButton("Step-by-step",playNormal,&grille[0][0]);
 	Widget oscillateur=MakeButton("Oscillateur",structOscillateur,&grille[0][0]);
@@ -44,8 +46,14 @@ void createNormalGrid(Widget w,void *d){
 	Widget mathusalhem=MakeButton("Mathusalhem",structMathusalhem,&grille[0][0]);
 	Widget aleatoire=MakeButton("Aleatoire",randomStruct,&grille[0][0]);
 	Widget starttoggle=MakeToggle("Automatique",FALSE,NULL,CBtogglenormal,&grille[0][0]);
-	iteration=MakeLabel("0      ");
+	iteration=MakeLabel("Choissez une structure dans le menu");
+	Widget scrollTxt = MakeLabel("Vitesse d'execution");
+
+	SetScrollbar(scrollBar,50.0,100.0,1.0);
+
  	SetWidgetPos(quitter,PLACE_UNDER,Draw_grille,NO_CARE,NULL);
+	SetWidgetPos(scrollTxt,PLACE_RIGHT,Draw_grille,NO_CARE,NULL);
+	SetWidgetPos(scrollBar,PLACE_RIGHT,Draw_grille,PLACE_UNDER,scrollTxt);
 	SetWidgetPos(start,PLACE_RIGHT,quitter,PLACE_UNDER,Draw_grille);
 	SetWidgetPos(starttoggle,PLACE_RIGHT,start,PLACE_UNDER,Draw_grille);
 	SetWidgetPos(aleatoire,PLACE_RIGHT,starttoggle,PLACE_UNDER,Draw_grille);
@@ -66,6 +74,7 @@ void createVariantGrid(Widget w,void *d){
 	nbriteration=0;
   	MakeWindow("Day & Night", NULL, 1);
   	Widget Draw_grille=MakeDrawArea(20*x,20*y, color, d);
+	Widget scrollBar = MakeHorizScrollbar(150, scrollCallback, d);
  	Widget quitter=MakeButton("Quitter",quit,NULL);
 	Widget start=MakeButton("Step-by-step",playVariant,&grille[0][0]);
 	Widget oscillateur=MakeButton("Oscillateur",structOscillateur,&grille[0][0]);
@@ -74,8 +83,12 @@ void createVariantGrid(Widget w,void *d){
 	Widget mathusalhem=MakeButton("Mathusalhem",structMathusalhem,&grille[0][0]);
 	Widget aleatoire=MakeButton("Aleatoire",randomStruct,&grille[0][0]);
 	Widget starttoggle=MakeToggle("Automatique",FALSE,NULL,CBtogglevariant,&grille[0][0]);
-	iteration=MakeLabel("0     ");
+	iteration=MakeLabel("Choissez une structure dans le menu");
+	Widget scrollTxt = MakeLabel("Vitesse d'execution");
+	SetScrollbar(scrollBar,50.0,100.0,1.0);
  	SetWidgetPos(quitter,PLACE_UNDER,Draw_grille,NO_CARE,NULL);
+	SetWidgetPos(scrollTxt,PLACE_RIGHT,Draw_grille,NO_CARE,NULL);
+	SetWidgetPos(scrollBar,PLACE_RIGHT,Draw_grille,NO_CARE,NULL);
 	SetWidgetPos(start,PLACE_RIGHT,quitter,PLACE_UNDER,Draw_grille);
 	SetWidgetPos(starttoggle,PLACE_RIGHT,start,PLACE_UNDER,Draw_grille);
 	SetWidgetPos(aleatoire,PLACE_RIGHT,starttoggle,PLACE_UNDER,Draw_grille);

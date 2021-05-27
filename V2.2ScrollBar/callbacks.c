@@ -35,6 +35,7 @@ void structOscillateur(Widget w,void *d){
     exit(errno);
   }
   fileToGrid(d,in);
+  nbriteration=-1;
   fclose(in);}
 /*
  Role: fonction qui réinitialise la grille à partir d'une structure lu sur le fichier 'stable'
@@ -46,6 +47,7 @@ void structStable(Widget w,void *d){
     exit(errno);
   }
   fileToGrid(d,in);
+  nbriteration=-1;
   fclose(in);}
 /*
  Role: fonction qui réinitialise la grille à partir d'une structure lu sur le fichier 'Vaisseau'
@@ -57,6 +59,7 @@ void structVaisseau(Widget w,void *d){
     exit(errno);
   }
   fileToGrid(d,in);
+  nbriteration=-1;
   fclose(in);
 }
 /*
@@ -69,6 +72,7 @@ void structMathusalhem(Widget w,void *d){
     exit(errno);
   }
   fileToGrid(d,in);
+  nbriteration=-1;
   fclose(in);
 }
 /*
@@ -76,6 +80,7 @@ void structMathusalhem(Widget w,void *d){
  */ 
 void randomStruct(Widget w,void *d){
   randomPopulation(d);
+  nbriteration=-1;
 }
         
         
@@ -96,6 +101,14 @@ void newDisplay(void *d){
 	}
 }
 
+float valDelay = 50;
+
+void scrollCallback(Widget w, float new_val, void *data){
+  printf("%f\n",new_val);
+  valDelay = 10000/new_val;
+  printf("%f\n",valDelay);
+}
+
 void autoModeNormal(void *d, XtIntervalId *id){
   //si le nombre d'appui est paire alors on a desactiver le toggle==> on fait pas la mise à jour
   //sinon quand le nombre d'appui est impaire alors on vient de lancer l'enchainement=> on fait la mise à jour normal
@@ -106,12 +119,13 @@ void autoModeNormal(void *d, XtIntervalId *id){
     newDisplay(d);
     Voisins(d,&voisin[0][0]);
     updateNormal(d,&voisin[0][0]);
-    AddTimeOut(1000, (GeneralCB)autoModeNormal, d);
+    //scrollCallback(w,new_val,d);
+    AddTimeOut(valDelay, (GeneralCB)autoModeNormal, d);
   }
 }
 void CBtogglenormal(Widget w,void *d){
   toggleon_off++;
-  AddTimeOut(1000, (GeneralCB)autoModeNormal, d);
+  AddTimeOut(valDelay, (GeneralCB)autoModeNormal, d);
 }
 
 void autoModeVariant(void *d, XtIntervalId *id){
@@ -124,12 +138,12 @@ void autoModeVariant(void *d, XtIntervalId *id){
     newDisplay(d);
     Voisins(d,&voisin[0][0]);
     updateDayNight(d,&voisin[0][0]);
-    AddTimeOut(1000, (GeneralCB)autoModeVariant, d);
+    AddTimeOut(valDelay, (GeneralCB)autoModeVariant, d);
   }
 }
 void CBtogglevariant(Widget w,void *d){
   toggleon_off++;
-  AddTimeOut(1000, (GeneralCB)autoModeVariant, d);
+  AddTimeOut(valDelay, (GeneralCB)autoModeVariant, d);
 }
 
 /*

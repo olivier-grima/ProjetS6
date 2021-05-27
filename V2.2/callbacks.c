@@ -111,6 +111,8 @@ void newDisplay(void *d){
 	}
 }
 
+
+
 void autoModeNormal(void *d, XtIntervalId *id){
   //si le nombre d'appui est paire alors on a desactiver le toggle==> on fait pas la mise à jour
   //sinon quand le nombre d'appui est impaire alors on vient de lancer l'enchainement=> on fait la mise à jour normal

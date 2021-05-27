@@ -29,7 +29,7 @@ etat grille[x][y]={{0,0,0,1,0,0,0,1,0,1,0,1,0,0,1,0},
 				   {0,1,0,1,0,1,0,1,0,0,0,0,0,1,1,1}
 				   };
 
-char *string_list[] = {"Random","Oscillateur","Stable","Vaisseau","Mathusalhem","NULL"};
+char *string_list[] = {"Random","Oscillateur","Stable","Vaisseau","Mathusalhem",NULL};
 
 /* Rôle : affichage de la nouvelle fenetre de l'interface graphique quand t-on choisi le fonctionnement normal 
  *        de jeu de la vie 
@@ -37,10 +37,10 @@ char *string_list[] = {"Random","Oscillateur","Stable","Vaisseau","Mathusalhem",
 void createNormalGrid(Widget w,void *d){
 	nbriteration=0;
   	MakeWindow("Jeu Standard", NULL, 1);
-  	Widget Draw_grille=MakeDrawArea(20*x,20*y, color, d);
+  	Widget Draw_grille=MakeDrawArea(120*x,60*y, color, d);
  	Widget quitter=MakeButton("quitter",quit,NULL);
 	Widget start=MakeButton("play",playNormal,&grille[0][0]);
-	Widget List = MakeScrollList(string_list,100,100,structList,d); 
+	Widget List = MakeScrollList(string_list,120,100,structList,d); 
 
 	/*Widget oscillateur=MakeButton("Oscillateur",structOscillateur,&grille[0][0]);
 	Widget stable=MakeButton("Stable",structStable,&grille[0][0]);
@@ -70,7 +70,7 @@ void createNormalGrid(Widget w,void *d){
 void createVariantGrid(Widget w,void *d){
 	nbriteration=0;
   	MakeWindow("Day & Night", NULL, 1);
-  	Widget Draw_grille=MakeDrawArea(20*x,20*y, color, d);
+  	Widget Draw_grille=MakeDrawArea(63*x,63*y, color, d);
  	Widget quitter=MakeButton("quitter",quit,NULL);
 	Widget start=MakeButton("play",playVariant,&grille[0][0]);
 	Widget oscillateur=MakeButton("Oscillateur",structOscillateur,&grille[0][0]);
