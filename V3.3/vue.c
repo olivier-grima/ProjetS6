@@ -19,10 +19,10 @@
 void createNormalGrid(Widget w,void *d){
   	MakeWindow("Jeu Standard", NULL, 1);// création du fenetre
   	/*------création des widgets-------*/
-	Widget MenuButton=MakeMenu("Structures");
+	//Widget MenuButton=MakeMenu("Structures");
 	//Widget MenuItems = MakeMenuItem(MenuButton,"menuItems",structDef,structList[0]);
 
-  	Widget Draw_grille=MakeDrawArea(20*x,20*y,traceDeBase,d);//Drawarea où on va dessiner la grille
+  	Widget Draw_grille=MakeDrawArea(19*x,19*y,traceDeBase,d);//Drawarea où on va dessiner la grille
 	Widget scrollBar = MakeHorizScrollbar(150, scrollCallback, NULL);//scrollbar pour varier la vitesse
 
  	Widget quitter=MakeButton("Quitter",quit,NULL);// bouton pour quitter
@@ -40,7 +40,7 @@ void createNormalGrid(Widget w,void *d){
 
 	SetScrollbar(scrollBar,50.0,100.0,1.0);//taille de scrollbar
   	/*------assemblage et positionnement des widgets-------*/
-	SetWidgetPos(MenuButton,PLACE_UNDER,quitter,PLACE_RIGHT,structure);
+	//SetWidgetPos(MenuButton,PLACE_UNDER,quitter,PLACE_RIGHT,structure);
 
  	SetWidgetPos(quitter,PLACE_UNDER,Draw_grille,NO_CARE,NULL);
 	SetWidgetPos(start,PLACE_RIGHT,quitter,PLACE_UNDER,Draw_grille);
@@ -66,7 +66,7 @@ void createNormalGrid(Widget w,void *d){
 void createVariantGrid(Widget w,void *d){
   	MakeWindow("Day & Night", NULL, 1);// création du fenetre
   	/*------création des widgets-------*/
-  	Widget Draw_grille=MakeDrawArea(20*x,20*y,traceDeBase,d);//Drawarea où on va dessiner la grille
+  	Widget Draw_grille=MakeDrawArea(19*x,19*y,traceDeBase,d);//Drawarea où on va dessiner la grille
 	Widget scrollBar = MakeHorizScrollbar(150, scrollCallback, NULL);//scrollbar pour varier la vitesse
  	Widget quitter=MakeButton("Quitter",quit,NULL);// bouton pour quitter
 	Widget start=MakeButton("Step-by-step",playVariant,d);//pas-à-pas bouton
@@ -115,7 +115,7 @@ void init_display(int argc, char *argv[], void *d){
     /*------création et positionnement des widgets-------*/
     // Les Labels et consigne       
 	Widget titre = MakeLabel("                        Jeu de la vie\n\n ");
-	Widget consigne = MakeLabel("\tLe jeu de la vie est un jeu de simulation au sens mathematique plutot que ludique.\nBien que n'etant pas decrit par la theorie des jeux, certains le decrivent comme un\n\"jeu a zero joueur\"\n\nDeux styles de jeu s'offrent pour vous :\n\n        Premier style: le jeu standard de la vie\n        Deuxieme style: la variant Day & Night\n\n\n");
+	Widget consigne = MakeLabel("\t Le jeu de la vie est un jeu de simulation au sens mathematique plutot que ludique.\nBien que n'etant pas decrit par la theorie des jeux, certains le decrivent comme un\n\"jeu a zero joueur\"\n\nDeux styles de jeu s'offrent pour vous :\n\n        Premier style: le jeu standard de la vie\n        Deuxieme style: la variant Day & Night\n\n\n");
 
 	SetWidgetPos(consigne, PLACE_UNDER, titre, NO_CARE, NULL);
 	SetWidgetFont(titre, policeTitre);
