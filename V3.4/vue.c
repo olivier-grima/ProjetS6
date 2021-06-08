@@ -109,23 +109,21 @@ void init_display(int argc, char *argv[], void *d){
 
     /*On crée les widgets, les écritures et titres de notre première fenetre*/
     GetStandardColors();
-    XFont policeTitre = GetFont("-bitstream-courier 10 pitch-bold-r-normal--0-0-0-0-m-0-adobe-standard"); 
-    XFont policeText = GetFont("-bitstream-bitstream charter-bold-i-normal--0-0-0-0-p-0-adobe-standard");
+    XFont styleTitre = GetFont("-bitstream-courier 10 pitch-bold-r-normal--0-0-0-0-m-0-adobe-standard"); 
+    XFont styleText = GetFont("-bitstream-bitstream charter-bold-i-normal--0-0-0-0-p-0-adobe-standard");
 
     /*------création et positionnement des widgets-------*/
     // Les Labels et consignes       
 	Widget titre = MakeLabel("                        Jeu de la vie\n\n ");
 	Widget consigne = MakeLabel("\t Le jeu de la vie est un jeu de simulation au sens mathematique plutot que ludique.\nBien que n'etant pas decrit par la theorie des jeux, certains le decrivent comme un\n\"jeu a zero joueur\"\n\nDeux styles de jeu s'offrent pour vous :\n\n        Premier style: le jeu standard de la vie\n        Deuxieme style: la variant Day & Night\n\n\n");
-
 	SetWidgetPos(consigne, PLACE_UNDER, titre, NO_CARE, NULL);
-	SetWidgetFont(titre, policeTitre);
-	SetWidgetFont(consigne, policeText);
+	SetWidgetFont(titre, styleTitre);
+	SetWidgetFont(consigne, styleText);
 
 
     // Les 2 boutons de style
 		        
 	Widget textJouer = MakeLabel("\nPour jouer, veuillez choisir un style de jeu, puis choisISsez une structure sur \nla nouvelle fenetre qui s'ouvre\n\n");
-
 	Widget jeunormal = MakeButton("\n  Jeu standard \n ", createNormalGrid, d);
 	SetBgColor(jeunormal, GetRGBColor(0, 255, 0));
 	Widget jeuvariant = MakeButton("\n  Day & Night  \n ", createVariantGrid, d);
@@ -134,14 +132,14 @@ void init_display(int argc, char *argv[], void *d){
 	SetWidgetPos(textJouer, PLACE_UNDER, consigne, NO_CARE, NULL);
 	SetWidgetPos(jeunormal, PLACE_UNDER, textJouer, NO_CARE, NULL);
 	SetWidgetPos(jeuvariant, PLACE_RIGHT, jeunormal, PLACE_UNDER, textJouer);
-	SetWidgetFont(textJouer, policeText);
+	SetWidgetFont(textJouer, styleText);
 
     // Le bouton quitter
-	Widget bQuitter = MakeButton(  "\n      QUIT       \n ", quit, NULL);
+	Widget quitter = MakeButton(  "\n      QUIT       \n ", quit, NULL);
 
-	SetWidgetPos(bQuitter, PLACE_UNDER, jeunormal, NO_CARE, NULL);
+	SetWidgetPos(quitter, PLACE_UNDER, jeunormal, NO_CARE, NULL);
 
 	
-	// affichage de la fenetre
+    // affichage de la fenetre
 	ShowDisplay();
 }

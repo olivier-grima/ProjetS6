@@ -4,7 +4,8 @@
 
 #include <libsx.h>
 
-#define x 25
+// taille de la matrice grille/voisin
+#define x 25 
 #define y 25
 typedef enum {dead,alive} etat;
 
